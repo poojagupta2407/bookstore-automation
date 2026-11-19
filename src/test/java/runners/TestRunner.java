@@ -30,12 +30,10 @@ import org.testng.annotations.DataProvider;
         features = "classpath:features",
         glue = {"stepDefinitions", "hooks"},
 
-        // TEMPORARY - narrowed to scenarios tagged @toBeRunNow (currently BKS-01).
-        // Restore to "not @wip and not @disabled" afterwards, so the whole suite
-        // runs again - and NEVER commit the narrowed version, or CI would
-        // quietly run only these.
-        // Before login was parked:  tags = "@toBeRunNow and not @wip",
-        tags = "@toBeRunNow and not @wip and not @disabled",
+        // Runs everything except unfinished (@wip) and parked (@disabled) scenarios.
+        // To run a subset, filter on the command line instead of editing this line:
+        //   mvn clean test -Dcucumber.filter.tags="@toBeRunNow and not @wip and not @disabled"
+        tags = "not @wip and not @disabled",
 
         plugin = {
                 "pretty",
