@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- ============================================================
+     Points at runners.TestRunner, which does not exist yet.
+     Until it is written (build step 6 in README.md):
+       mvn clean compile   works
+       mvn clean test      fails with "Cannot find class" - expected
+     ============================================================ -->
+<suite name="BookStore Suite" verbose="1">
+
+    <test name="BookStore Tests">
+        <classes>
+            <class name="runners.TestRunner"/>
+        </classes>
+    </test>
+
+</suite>

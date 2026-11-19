@@ -1,0 +1,26 @@
+# ── Build output ─────────────────────────────────────────────
+target/
+*.class
+
+# ── Test output ──────────────────────────────────────────────
+test-output/
+allure-results/
+allure-report/
+*.log
+
+# ── IntelliJ ─────────────────────────────────────────────────
+.idea/
+*.iml
+out/
+
+# ── Other IDEs ───────────────────────────────────────────────
+.vscode/
+.settings/
+.project
+.classpath
+bin/
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

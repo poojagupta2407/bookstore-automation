@@ -1,0 +1,39 @@
+# ============================================================
+# LOCATOR REPOSITORY - every UI locator in the project lives here.
+#
+# Format: every locator is an XPath string.
+#
+#   PageClassName:                    <- must match the Java class name exactly
+#     locator_key: "//tag[@attribute='value']"
+#
+# Write each XPath inside DOUBLE quotes, and use SINGLE quotes inside the
+# XPath itself - otherwise the YAML and the XPath quotes collide.
+#
+# Dynamic values use a {placeholder}:
+#     book_link: "//td//a[normalize-space()='{bookTitle}']"
+# LocatorReader makes the placeholder safe for values that contain an
+# apostrophe, e.g. "You Don't Know JS".
+#
+# Before adding a locator, check Framework-Design.md section 6 -
+# DemoQA repeats some ids (id="submit", id="addNewRecordButton"), so
+# //button[@id='submit'] would match the wrong button. Locate those by
+# their text instead:  //button[normalize-space()='Logout']
+#
+# Every XPath below was checked on the live site on 2026-11-02 and matches
+# exactly the same element(s) as the locator it replaced.
+# ============================================================
+
+LoginPage:
+  username_field: "//input[@id='userName']"
+  password_field: "//input[@id='password']"
+  login_button:   "//button[@id='login']"
+
+ProfilePage:
+  username_value: "//label[@id='userName-value']"
+
+BooksPage:
+  search_box:     "//input[@id='searchBox']"
+  table_rows:     "//tbody/tr"
+  book_titles:    "//tbody/tr/td//a"
+  column_headers: "//thead//th"
+  book_link:      "//td//a[normalize-space()='{bookTitle}']"
