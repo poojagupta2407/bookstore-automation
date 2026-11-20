@@ -72,7 +72,7 @@ Feature: Book Store catalogue
 
 
   # BKS-03
-  @negative @wip
+  @negative
   Scenario: A search with no match lists no books
     When I search for "zzzz-no-such-book"
     Then no books should be listed
