@@ -1,4 +1,5 @@
 # BookStore Automation
+[![CI](https://github.com/poojagupta2407/bookstore-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/poojagupta2407/bookstore-automation/actions/workflows/ci.yml)
 
 BDD UI automation for the [DemoQA Book Store](https://demoqa.com/books) —
 Selenium 4 · Cucumber 7 · TestNG · Maven · Java 21.
