@@ -1,0 +1,70 @@
+# ============================================================
+# CI - runs the test suite on GitHub's computers, automatically.
+# Explained line by line in ../../../Git-GitHub-Guide.md, Lesson 8.
+#
+# Runs when:  a pull request targets main  (checks the change BEFORE merge)
+#             something lands on main      (checks main AFTER merge)
+#             you click "Run workflow"     (Actions tab, any time)
+# ============================================================
+
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Read-only access to the repo is all this workflow needs.
+permissions:
+  contents: read
+
+# A new push to the same PR cancels the older, now out-of-date run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: UI tests (Chrome, headless)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      # Same as -Dheadless=true, through ConfigReader's environment-variable
+      # level. The runner has no screen, so the browser must be headless.
+      BOOKSTORE_HEADLESS: "true"
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v7
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven            # reuse downloaded jars between runs
+
+      - name: Show versions
+        run: |
+          java -version
+          mvn -v
+          google-chrome --version
+
+      - name: Run the tests
+        # -B   batch mode: plain log output, no colour codes or prompts
+        # -ntp no download progress bars cluttering the log
+        run: mvn -B -ntp clean test
+
+      - name: Upload test reports
+        if: always()              # upload even when tests fail - that's when you need it
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-reports
+          path: |
+            target/cucumber-reports/
+            target/surefire-reports/
+          retention-days: 14
+          if-no-files-found: warn
