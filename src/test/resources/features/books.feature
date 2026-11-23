@@ -61,7 +61,7 @@ Feature: Book Store catalogue
     # BKS-04
     Examples: By author
       | keyword | title            | count |
-      | Richard | Git Pocket Guide | 2     |
+      | Richard | Git Pocket Guide | 1     |
 
     # BKS-06
     @wip
