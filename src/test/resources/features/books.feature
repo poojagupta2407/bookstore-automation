@@ -59,10 +59,9 @@ Feature: Book Store catalogue
       | Evolvable | Designing Evolvable Web APIs with ASP.NET | 1     |
 
     # BKS-04
-    @wip
     Examples: By author
       | keyword | title            | count |
-      | Richard | Git Pocket Guide | 1     |
+      | Richard | Git Pocket Guide | 2     |
 
     # BKS-06
     @wip
