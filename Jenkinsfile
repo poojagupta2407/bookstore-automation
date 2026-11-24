@@ -60,6 +60,13 @@ pipeline {
 
     stages {
 
+        stage('Info') {
+            steps {
+                     echo "Branch: ${env.BRANCH_NAME} | Build: #${env.BUILD_NUMBER} | Job: ${env.JOB_NAME}"
+                     echo "Commit: ${env.GIT_COMMIT}"
+            }
+        }
+
         stage('Versions') {
             steps {
                 runCmd('java -version')
