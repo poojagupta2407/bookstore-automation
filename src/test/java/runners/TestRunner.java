@@ -26,6 +26,8 @@ import org.testng.annotations.DataProvider;
  *   @wip       step code not written yet
  *   @disabled  parked on purpose (login.feature since 2026-11-02 - see its header)
  */
+//json = machine-readable results, used by the Jenkins Cucumber reports plugin
+
 @CucumberOptions(
         features = "classpath:features",
         glue = {"stepDefinitions", "hooks"},
@@ -38,7 +40,8 @@ import org.testng.annotations.DataProvider;
         plugin = {
                 "pretty",
                 "summary",
-                "html:target/cucumber-reports/cucumber.html"
+                "html:target/cucumber-reports/cucumber.html",
+                "json:target/cucumber-reports/cucumber.json"
         },
         monochrome = true
 )
